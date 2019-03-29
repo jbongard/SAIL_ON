@@ -8,9 +8,15 @@ class SWARM():
 
         self.swarm = {}
 
-        for r in range(0,c.populationSize):
+        self.swarm[0] = self.Create_Adversary()
 
-            self.swarm[r] = ROBOT()
+        self.swarm[1] = self.Create_Defender()
+
+    def Send_To(self,simulator):
+
+        for r in self.swarm:
+
+            self.swarm[r].Send_To(simulator)
 
     def Get_Robot(self,r):
 
@@ -26,3 +32,14 @@ class SWARM():
         for r in self.swarm:
 
             self.swarm[r].Print()
+
+# ----------------- Private methods ----------------------
+
+    def Create_Adversary(self):
+
+        return ROBOT(c.adversary)
+
+    def Create_Defender(self):
+
+        return ROBOT(c.defender)
+

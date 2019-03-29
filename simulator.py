@@ -1,13 +1,18 @@
+import pyrosim
+
 class SIMULATOR():
 
     def __init__(self):
 
-        pass
+        self.sim = pyrosim.Simulator(play_paused=True)
 
-    def Add(self,entity):
+    def Get_Simulator(self):
 
-        pass
+        return self.sim
 
     def Simulate(self):
 
-        pass
+        self.sim.start()
+
+        self.sim.wait_to_finish()
+

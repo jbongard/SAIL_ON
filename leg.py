@@ -1,46 +1,22 @@
-from legPart import LEG_PART
-
 import constants as c
 
-import copy
-
-import math
+from legPart import LEG_PART
 
 class LEG():
 
-    def __init__(self,robotType,index):
+    def __init__(self,robotType,legIndex):
 
-        self.lowerLeg = LEG_PART(robotType,index,c.lower)
+        self.legParts = {}
 
-        self.upperLeg = LEG_PART(robotType,index,c.upper)
+        self.legParts[c.upperLeg] = LEG_PART(robotType,legIndex,c.upperLeg)
 
-        exit()
-
-        self.robotType = robotType
-
-        self.index = index
-
-        self.Set_Angle()
-
-        self.Set_Color()
-
-        self.Set_Position()
-
-        self.Set_Orientation()
+        self.legParts[c.lowerLeg] = LEG_PART(robotType,legIndex,c.lowerLeg)
 
     def Send_To(self,simulator):
 
-        simulator.send_cylinder( \
+        for legPart in self.legParts:
 
-            position = self.position ,
-
-            orientation = self.orientation ,
-
-            length = c.legLength , 
-
-            radius = c.legRadius ,
-
-            color = self.color )
+            self.legParts[legPart].Send_To(simulator)
 
 # -------------- Private methods ---------------
 

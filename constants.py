@@ -35,6 +35,10 @@ legAnglesInRadians = {
 
 numLegs = len(legAnglesInRadians)
 
+upperLeg = 0
+
+lowerLeg = 1
+
 colors = {
 
 adversary: [1,0,0] ,

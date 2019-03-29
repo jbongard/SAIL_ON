@@ -12,6 +12,15 @@ class SWARM():
 
             self.swarm[r] = ROBOT()
 
+    def Get_Robot(self,r):
+
+        if r in self.swarm:
+
+            return r
+
+        else:
+            return None
+ 
     def Print(self):
 
         for r in self.swarm:

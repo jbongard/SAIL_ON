@@ -51,21 +51,38 @@ class LEG_PART():
 
         self.orientation = [0,0,0]
 
-        self.orientation[c.x] = math.sin(self.angle)
+        if self.partOfLeg == c.upperLeg:
 
-        self.orientation[c.y] = math.cos(self.angle)
+            self.orientation[c.x] = math.sin(self.angle)
+
+            self.orientation[c.y] = math.cos(self.angle)
+        
+        else: # It's the lower leg
+
+            self.orientation[c.z] = 1
 
     def Set_Position(self):
 
         self.position      = copy.deepcopy( c.offsets[self.robotType] )
 
+        if self.partOfLeg == c.upperLeg:
+
+            self.Set_Position_Of_Upper_Leg()
+        else:
+            self.Set_Position_Of_Lower_Leg()
+
+    def Set_Position_Of_Upper_Leg(self):
+
+        self.position[c.x] = self.position[c.x] + (c.legLength/2.0) * math.sin(self.angle)
+
+        self.position[c.y] = self.position[c.y] + (c.legLength/2.0) * math.cos(self.angle)
+
+        self.position[c.z] = self.position[c.z] + c.legRadius + c.legLength
+
+    def Set_Position_Of_Lower_Leg(self):
+
         self.position[c.x] = self.position[c.x] + c.legLength * math.sin(self.angle)
 
         self.position[c.y] = self.position[c.y] + c.legLength * math.cos(self.angle)
 
-        self.position[c.z] = self.position[c.z] + c.legRadius + c.legLength
-
-        if self.partOfLeg == c.lowerLeg:
-
-            self.position[c.z] = self.position[c.z] / 2.0
-
+        self.position[c.z] = self.position[c.z] + c.legRadius + c.legLength/2.0

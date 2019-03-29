@@ -13,13 +13,13 @@ defender  : "defender"
 
 }
 
-bodyLength = 1
+bodyLength = 2 
 
 bodyRadius = 0.2 * bodyLength
 
 legLength  = 0.5 * bodyLength
 
-legRadius  = 0.1 * bodyLength
+legRadius  = 0.05 * bodyLength
 
 legAnglesInRadians = {
 
